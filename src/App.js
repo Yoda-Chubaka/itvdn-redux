@@ -1,50 +1,30 @@
-import { useSelector, useDispatch } from "react-redux";
-import {useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   increment,
-  decrement,
-  reload,
-  addValue
+  decrement
 } from './store/counterSlice';
 
 function App() {
-  const count = useSelector((state)=> state.counterValue.count);
+  const count = useSelector((state) => state.counerValue.count);
   const dispatch = useDispatch();
 
-  const [value,setValue] = useState(0);
-
-  function inc(){
-    dispatch(increment());
+  function inc() {
+    dispatch(increment);
   }
 
-  function dec(){
-    dispatch(decrement());
-  }
-
-  function add(){
-    const val = Number(value);
-
-    dispatch(addValue(isNaN(val)?0:val));
+  function dec() {
+    dispatch(decrement);
   }
 
   return (
     <div className="container">
-      <div>
-        <h3>{count}</h3>
-        <button onClick={inc}>INC +</button>
-        <button onClick={dec}>DEC -</button>
-      </div>
-      <div>
-        <button onClick={()=> dispatch(reload())}>RESET</button>
-      </div>
-      <div>
-        <input type="text" value={value} 
-        onChange={el => setValue(el.target.value)}/>
-        <button onClick={add}>PLUS VALUE</button>
-      </div>
+      <h3>{count}</h3>
+      <button onClick={inc}>Increment +</button>
+      <button onClick={dec}>Decrement -</button>
+
     </div>
-  );
+  )
 }
 
 export default App;
